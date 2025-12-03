@@ -26,7 +26,7 @@ author:
   avatar           : "image.jpg"
   name             : "Haruko386"
   pronouns         : # example: "she/her"  
-  bio              : # ""
+  bio              : "Master in Computer Vision and Machine Learning. Proficient in backend development frameworks such as Go-Zero, Gin, and Django. Frontend development expertise in HTML+CSS+JavaScript and the Vue framework. Familiar with MySQL relational databases. Primary research focus in computer vision is deep estimation methods based on diffusion models. Career Objectives: Computer Vision Algorithm Engineer, Autonomous Driving R&D Engineer, Go/Python Backend Development Engineer"  # A short bio or tagline for the author
   location         : "Hangzhou, Zhejiang, China"
   employer         : "Shenyang Jianzhu University"
   uri              : # URL
