@@ -7,7 +7,7 @@
 # server process.
 
 # Basic Site Settings
-locale                   : "zh-CN" # e.g. "en-US"
+locale                   : "en-US" # e.g. "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
 title                    : "Haruko386"
 title_separator          : "-"
@@ -33,7 +33,7 @@ author:
   email            : "Haruko386@outlook.com" 
 
   # Academic websites
-  academia         : "https://haruko386.github.io"
+  Academia         : "https://haruko386.github.io"
   arxiv            : # URL - Update with the correct link to your profile
   googlescholar    : # "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
   inspire-hep      : # URL

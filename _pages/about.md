@@ -7,15 +7,23 @@ redirect_from:
   - /about.html
 ---
 
-<img align="right" alt="GIF" src="https://s2.loli.net/2024/12/07/dL4JXeokBQPisbN.gif" />
-
-### I'm Haruko386
-
-- A Master major in Computer Version | Deep Estimation.
-- 🌱 Currently studying in Shenyang Jianzhu University.
-- 💼 Job Intent: Computer Vision Algorithm Engineer, Golang, Python backend development.
-- 💬 Feel free to ask me about Computer Version, Deep Estimation and my projects on [haruko386@outlook.com](mailto:haruko386@outlook.com)
-- ⚡ Fun fact: Deep Estimation, Golang, Python, Mysql, Vue.
+<table>
+  <tr>
+    <td width="60%">
+      <h3>I'm Haruko386</h3>
+      <ul>
+        <li>A Master major in Computer Version | Deep Estimation.</li>
+        <li>🌱 Currently studying in Shenyang Jianzhu University.</li>
+        <li>💼 Job Intent: Computer Vision Algorithm Engineer, Golang, Python backend development Engineer.</li>
+        <li>💬 Feel free to ask me about Computer Version, Deep Estimation and my projects on <a href="mailto:haruko386@outlook.com">haruko386@outlook.com</a></li>
+        <li>⚡ Fun fact: Deep Estimation, Golang, Python, Mysql, Vue.</li>
+      </ul>
+    </td>
+    <td width="40%">
+      <img src="https://s2.loli.net/2024/12/07/dL4JXeokBQPisbN.gif" alt="Coding Cat" width="100%">
+    </td>
+  </tr>
+</table>
 
 
 <h2 align="center">
