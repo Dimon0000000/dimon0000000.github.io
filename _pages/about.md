@@ -13,47 +13,53 @@ redirect_from:
 
 - A Master major in Computer Version | Deep Estimation.
 - 🌱 Currently studying in Shenyang Jianzhu University.
-- 💼 Job Intent: Computer Vision Algorithm Engineer.
+- 💼 Job Intent: Computer Vision Algorithm Engineer, Golang, Python backend development.
 - 💬 Feel free to ask me about Computer Version, Deep Estimation and my projects on [haruko386@outlook.com](mailto:haruko386@outlook.com)
-- ⏱️ I own a Game Speedrun World Record in Hollow Knight Trail of the Warrior.
-- ⚡ Fun fact: CV Engineer、Deep Estimation.
-
-### 📱 Social Media
-![Instagram](https://img.shields.io/badge/Instagram-endless_developy-u?style=social&logo=instagram)
-
-### 💻 ACM ＆ OI (2022-2023)
-[![LeetCode user developy](https://img.shields.io/badge/dynamic/json?style=flat&labelColor=black&color=%23ffa116&label=Leetcode&query=ratingQuantile&url=https%3A%2F%2Fleetcode-badge.vercel.app%2Fapi%2Fusers%2Fdevelopy%2Fcn%2F&logo=leetcode&logoColor=yellow)](https://leetcode.cn/developy/)
-[![Codeforces](https://badges.riever.dev/codeforces/Developy.svg?left_color=black)](https://codeforces.com/profile/Developy)
-[![AtCoder](https://badges.riever.dev/atcoder/Developy.svg?left_color=lightgrey)](https://atcoder.jp/users/Developy)
-![CodeChef](https://img.shields.io/badge/CodeChef-1688-darkblue?style=flat&logo=CodeChef&logoColor=%235B4638&labelColor=lightgrey)
+- ⚡ Fun fact: Deep Estimation, Golang, Python, Mysql, Vue.
 
 
-
-### 🤖 AI & Machine Learning
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-
-### 🛠️ Development toolkit
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-![Clion](https://img.shields.io/badge/clion-darkgreen?style=for-the-badge&logo=Clion)
-![Goand](https://img.shields.io/badge/goland-purple?style=for-the-badge&logo=Goland)
-![PyCharm](https://img.shields.io/badge/PyCharm-green?style=for-the-badge&logo=Pycharm)
-
-## 📊 GitHub Statistics
-<div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=haruko386"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=haruko386"/>
-</div>
-
-<hr>
+<h2 align="center">
+  <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
+  Skill & Tools
+</h2>
 
 <div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=Haruko386&column=-1" alt="Haruko386's GitHub trophy">
+  <!-- 使用更美观的动态技能图标 -->
+  <img src="https://skillicons.dev/icons?i=cpp,python,go,mysql,pytorch,linux,vue,git,vscode,latex,github,docker&perline=11" />
+
+  <!-- 添加技能动画卡片 - 改进布局 -->
+
 </div>
 
-## 📈 Contribution Timeline
-![](https://github-readme-activity-graph.vercel.app/graph?username=haruko386&theme=github-light)
+<h2 align="center">
+  <img src="https://media.giphy.com/media/jSKBmKkvo2dPQQtsR1/giphy.gif" width="25px" height="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
+  Github Contribution
+</h2>
+
+<div align="center">
+<!-- 添加动态数据卡片 -->
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=haruko386&theme=transparent" width="33%" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=haruko386&theme=transparent" width="33%" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=haruko386&theme=transparent" width="33%" />
+
+-----------------
+
+<div align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=Haruko386&column=-1" alt="Haruko386's GitHub trophy" width="100%">
+</div>
+
+<h2 align="center">
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
+  GitHub 活动
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
+</h2>
+
+<!-- 贡献蛇形图 - 优化显示效果 -->
+<div align="center">
+<picture>
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Haruko386/Haruko386/refs/heads/output/snake.svg" width="100%">
+</picture>
+<!-- 实时贡献日历热图 -->
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Haruko386&theme=transparent" width="100%" />
+</div>
+
