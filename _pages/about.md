@@ -33,7 +33,7 @@ redirect_from:
 
 <div align="center">
   <!-- 使用更美观的动态技能图标 -->
-  <img src="https://skillicons.dev/icons?i=cpp,python,go,mysql,pytorch,linux,vue,git,vscode,latex,github,docker&perline=11" />
+  <img src="https://skillicons.dev/icons?i=cpp,python,go,mysql,pytorch,linux,vue,git,vscode,latex,github,docker,ps,pr,&perline=7" />
 
   <!-- 添加技能动画卡片 - 改进布局 -->
 
@@ -50,7 +50,8 @@ redirect_from:
 <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=haruko386&theme=transparent" width="33%" />
 <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=haruko386&theme=transparent" width="33%" />
 
------------------
+
+<hr>
 
 <div align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=Haruko386&column=-1" alt="Haruko386's GitHub trophy" width="100%">
