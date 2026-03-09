@@ -66,54 +66,40 @@ style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,0.15);"/>
 
 <div style="width:100%; max-width:1100px; margin:auto;">
 
-<div style="display:flex; flex-wrap:wrap; align-items:center; gap:40px; margin:40px 0;">
-
-<div style="flex:1; min-width:420px;">
-  <img src="../images/publication/haruko386/cover.png"
-       style="width:100%; aspect-ratio:16/9; object-fit:cover;
-       border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.2);">
-</div>
-
-<div style="flex:1; min-width:300px;">
-
-<h3 style="margin-top:0;">
-<a href="https://haruko386.github.io/research/">
-ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models
-</a>
-</h3>
-
-<p>
-<b>Haruko386</b>, ...
-</p>
-
-<p>
-<a href="https://haruko386.github.io/research/article.pdf">Paper</a> |
-<a href="https://github.com/cvrs-ys801/ApDepth">Code</a> |
-<a href="https://huggingface.co/spaces/developy/ApDepth">Demo 🤗</a>
-</p>
-
-<ul style="line-height:1.6; margin-top:10px;">
-
-<li>
-We propose <b>ApDepth</b>, a diffusion-based framework for accurate monocular depth estimation with <b>single-step inference</b>.
-</li>
-
-<li>
-The model integrates knowledge from both <b>data-driven methods</b> (e.g., Depth Anything) and <b>model-driven diffusion approaches</b>.
-</li>
-
-<li>
-A novel architecture is designed to balance <b>detail preservation</b> and <b>efficient inference</b> with minimal computational overhead.
-</li>
-
-<li>
-Experiments demonstrate <b>competitive or superior performance</b> across multiple benchmark datasets.
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</div>
+  <div style="display:flex; flex-wrap:wrap; align-items:flex-start; gap:25px; margin:30px 0;">
+    <div style="flex: 0 0 35%; min-width:250px; max-width: 350px;">
+      <img src="../images/publication/haruko386/cover.png"
+           style="width:100%; aspect-ratio:16/9; object-fit:cover;
+                  border-radius:4px; box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+    </div>
+    <div style="flex:1; min-width:300px;">
+      <div style="font-size: 1.1em; margin-bottom: 5px;">
+        <a href="https://haruko386.github.io/research/" style="font-weight: bold; text-decoration: none;">
+          ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models
+        </a>
+      </div>
+      <div style="margin-bottom: 5px; color: #444;">
+        <b>Haruko386</b>, ...
+      </div>
+      <div style="margin-bottom: 12px; font-size: 0.95em;">
+        <a href="https://haruko386.github.io/research/article.pdf">[Paper]</a> 
+        <a href="https://github.com/cvrs-ys801/ApDepth">[Code]</a> 
+        <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo 🤗]</a>
+      </div>
+      <ul style="line-height:1.5; margin-top:0; padding-left: 20px; color: #555;">
+        <li style="margin-bottom: 6px;">
+          We propose <b>ApDepth</b>, a diffusion-based framework for accurate monocular depth estimation with <b>single-step inference</b>.
+        </li>
+        <li style="margin-bottom: 6px;">
+          The model integrates knowledge from both <b>data-driven methods</b> (e.g., Depth Anything) and <b>model-driven diffusion approaches</b>.
+        </li>
+        <li style="margin-bottom: 6px;">
+          A novel architecture is designed to balance <b>detail preservation</b> and <b>efficient inference</b> with minimal computational overhead.
+        </li>
+        <li>
+          Experiments demonstrate <b>competitive or superior performance</b> across multiple benchmark datasets.
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
