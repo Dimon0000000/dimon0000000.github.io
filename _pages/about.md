@@ -64,16 +64,16 @@ style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,0.15);"/>
 
 <h2 align="center">Publication</h2>
 
+<div style="width:100%; max-width:1100px; margin:auto;">
+
 <div style="display:flex; flex-wrap:wrap; align-items:center; gap:40px; margin:40px 0;">
 
-<!-- 左侧图片 -->
 <div style="flex:1; min-width:420px;">
   <img src="../images/publication/haruko386/cover.png"
        style="width:100%; aspect-ratio:16/9; object-fit:cover;
        border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.2);">
 </div>
 
-<!-- 右侧文字 -->
 <div style="flex:1; min-width:300px;">
 
 <h3 style="margin-top:0;">
@@ -111,6 +111,8 @@ Experiments demonstrate <b>competitive or superior performance</b> across multip
 </li>
 
 </ul>
+
+</div>
 
 </div>
 
