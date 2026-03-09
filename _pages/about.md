@@ -7,68 +7,45 @@ redirect_from:
   - /about.html
 ---
 
-<table>
+<div align="center"><h1>CVRS-ys801<br>
+<sub><sup><em>SJZU ys-801 Computer Vision and Remote Sensing Lab</em></sup></sub><br>
+</h1></div>
+
+**CVRS-YS801** is the Computer Vision and Remote Sensing Lab of **Shenyang Jianzhu University (SJZU)**, led by [**Prof. Yuan Shuai**](https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776).
+
+The lab focuses on research in **Computer Vision and Remote Sensing (CVRS)**.
+The organization hosts research code, experiments, and collaborative projects developed by members of the lab.
+
+<p align="center"><b>Member</b></p>
+<table align="center">
   <tr>
-    <td width="60%">
-      <h3>I'm Haruko386</h3>
-      <ul>
-        <li>A Master major in Computer Version | Deep Estimation.</li>
-        <li>🌱 Currently studying in Shenyang Jianzhu University.</li>
-        <li>💼 Job Intent: Computer Vision Algorithm Engineer, Golang, Python backend development Engineer.</li>
-        <li>💬 Feel free to ask me about Computer Version, Deep Estimation and my projects on <a href="mailto:haruko386@outlook.com">haruko386@outlook.com</a></li>
-        <li>⚡ Fun fact: Deep Estimation, Golang, Python, Mysql, Vue.</li>
-      </ul>
+    <td align="center">
+      <a href="https://github.com/Dimon0000000">
+        <img src="https://avatars.githubusercontent.com/u/85853517?v=4" width="120px;" alt=""/>
+        <br />
+        <sub><b>Dimon</b></sub>
+      </a>
     </td>
-    <td width="40%">
-      <img src="https://s2.loli.net/2024/12/07/dL4JXeokBQPisbN.gif" alt="Coding Cat" width="100%">
+    <td align="center">
+      <a href="https://github.com/Haruko386">
+        <img src="https://avatars.githubusercontent.com/u/140301008?v=4" width="120px;" alt=""/>
+        <br />
+        <sub><b>Haruko386</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/WuSangui571">
+        <img src="https://avatars.githubusercontent.com/u/93105459?v=4" width="120px;" alt=""/>
+        <br />
+        <sub><b>Sangui</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Ltohka">
+        <img src="https://avatars.githubusercontent.com/u/72191648?v=4" width="120px;" alt=""/>
+        <br />
+        <sub><b>Tohka</b></sub>
+      </a>
     </td>
   </tr>
 </table>
-
-
-<h2 align="center">
-  <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
-  Skill & Tools
-</h2>
-
-<div align="center">
-  <!-- 使用更美观的动态技能图标 -->
-  <img src="https://skillicons.dev/icons?i=cpp,python,go,mysql,pytorch,linux,vue,git,vscode,latex,github,docker,ps,pr,&perline=7" />
-
-  <!-- 添加技能动画卡片 - 改进布局 -->
-
-</div>
-
-<h2 align="center">
-  <img src="https://media.giphy.com/media/jSKBmKkvo2dPQQtsR1/giphy.gif" width="25px" height="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
-  Github Contribution
-</h2>
-
-<div align="center">
-<!-- 添加动态数据卡片 -->
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=haruko386&theme=transparent" width="33%" />
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=haruko386&theme=transparent" width="33%" />
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=haruko386&theme=transparent" width="33%" />
-
-
-<hr>
-
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=Haruko386&column=-1" alt="Haruko386's GitHub trophy" width="100%">
-</div>
-
-<h2 align="center">
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
-  GitHub Activity
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
-</h2>
-
-<!-- 贡献蛇形图 - 优化显示效果 -->
-<div align="center">
-<picture>
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Haruko386/Haruko386/refs/heads/output/snake.svg" width="100%">
-</picture>
-<!-- 实时贡献日历热图 -->
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Haruko386&theme=transparent" width="100%" />
-</div>
-

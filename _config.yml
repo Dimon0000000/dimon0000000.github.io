@@ -24,16 +24,16 @@ repository               : "dimon0000000/dimon0000000.github.io"
 author:
   # Biographic information
   avatar           : "image.jpg"
-  name             : "Haruko386"
+  name             : "CVRS-ys801"
   pronouns         : # example: "she/her"  
-  bio              : ""  # A short bio or tagline for the author
+  bio              : "SJZU ys-801 Computer Vision and Remote Sensing Lab"  # A short bio or tagline for the author
   location         : "Shenyang, Liaoning, China"
   employer         : "Shenyang Jianzhu University"
   uri              : # URL
   email            : "jw34617@gmail.com" 
 
   # Academic websites
-  Academia         : "https://haruko386.github.io"
+  Academia         : "https://dimon0000000.github.io"
   arxiv            : # URL - Update with the correct link to your profile
   googlescholar    : # "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
   inspire-hep      : # URL
