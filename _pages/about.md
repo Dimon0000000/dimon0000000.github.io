@@ -55,37 +55,39 @@ The organization hosts research code, experiments, and collaborative projects de
 
 <h2 align="center">Publication</h2>
 
-<div style="display: flex; flex-wrap: wrap; align-items: center; border-bottom: 1px #efefef solid; padding: 2em 0; gap: 2em;">
-  <div style="flex: 1 1 200px; max-width: 400px; min-width: 250px;">
-    <img src="../images/publication/haruko386/cover.png" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; box-shadow: 3px 3px 6px #888; border-radius: 4px;">
+<div style="max-width: 800px; margin: 0 auto; padding: 2em 0; border-bottom: 1px #efefef solid; display: flex; flex-direction: column; align-items: center; gap: 1.8em; font-family: system-ui, -apple-system, sans-serif;">
+  <div style="width: 100%; max-width: 680px;">
+    <img src="../images/publication/haruko386/cover.png" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-radius: 8px;">
   </div>
-  <div style="flex: 2 1 300px;">
-    <div style="font-size: 1.1em; margin-bottom: 5px;">
-      <a href="https://haruko386.github.io/research/" style="font-weight: bold; text-decoration: none;">
+  <div style="width: 100%; text-align: center;">
+    <div style="font-size: 1.5em; margin-bottom: 12px; line-height: 1.4;">
+      <a href="https://haruko386.github.io/research/" style="font-weight: 700; color: #222; text-decoration: none; transition: color 0.2s;">
         ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models
       </a>
     </div>
-    <div style="margin-bottom: 5px; color: #444;">
-      <b>Haruko386</b>, ...
+    <div style="margin-bottom: 16px; color: #555; font-size: 1.1em;">
+      <b>Jiawei Wang</b>, Shuai Yuan, Mingbo Lei
     </div>
-    <div style="margin-bottom: 12px; font-size: 0.95em;">
-      <a href="https://haruko386.github.io/research/article.pdf">[Paper]</a> 
-      <a href="https://github.com/cvrs-ys801/ApDepth">[Code]</a> 
-      <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo 🤗]</a>
+    <div style="margin-bottom: 24px; font-size: 0.95em; display: flex; justify-content: center; gap: 20px;">
+      <a href="https://haruko386.github.io/research/article.pdf" style="color: #0366d6; text-decoration: none; font-weight: 500;">[Paper]</a> 
+      <a href="https://github.com/cvrs-ys801/ApDepth" style="color: #0366d6; text-decoration: none; font-weight: 500;">[Code]</a> 
+      <a href="https://huggingface.co/spaces/developy/ApDepth" style="color: #0366d6; text-decoration: none; font-weight: 500;">[Demo 🤗]</a>
     </div>
-    <ul style="line-height: 1.5; margin-top: 0; padding-left: 20px; color: #555;">
-      <li style="margin-bottom: 6px;">
-        We propose <b>ApDepth</b>, a diffusion-based framework for accurate monocular depth estimation with <b>single-step inference</b>.
-      </li>
-      <li style="margin-bottom: 6px;">
-        The model integrates knowledge from both <b>data-driven methods</b> (e.g., Depth Anything) and <b>model-driven diffusion approaches</b>.
-      </li>
-      <li style="margin-bottom: 6px;">
-        A novel architecture is designed to balance <b>detail preservation</b> and <b>efficient inference</b> with minimal computational overhead.
-      </li>
-      <li>
-        Experiments demonstrate <b>competitive or superior performance</b> across multiple benchmark datasets.
-      </li>
-    </ul>
+    <div style="text-align: left; background-color: #f8f9fa; padding: 1.8em 2.2em; border-radius: 12px; border: 1px solid #eaeaea; color: #444;">
+      <ul style="line-height: 1.6; margin: 0; padding-left: 20px;">
+        <li style="margin-bottom: 10px;">
+          We propose <b>ApDepth</b>, a diffusion-based framework for accurate monocular depth estimation with <b>single-step inference</b>.
+        </li>
+        <li style="margin-bottom: 10px;">
+          The model integrates knowledge from both <b>data-driven methods</b> (e.g., Depth Anything) and <b>model-driven diffusion approaches</b>.
+        </li>
+        <li style="margin-bottom: 10px;">
+          A novel architecture is designed to balance <b>detail preservation</b> and <b>efficient inference</b> with minimal computational overhead.
+        </li>
+        <li>
+          Experiments demonstrate <b>competitive or superior performance</b> across multiple benchmark datasets.
+        </li>
+      </ul>
+    </div>
   </div>
-</div> 
+</div>
