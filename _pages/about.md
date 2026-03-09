@@ -66,11 +66,14 @@ style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,0.15);"/>
 
 <div style="display:flex; flex-wrap:wrap; align-items:center; gap:40px; margin:40px 0;">
 
+<!-- 左侧图片 -->
 <div style="flex:1; min-width:420px;">
   <img src="../images/publication/haruko386/cover.png"
-       style="width:100%; object-fit:cover; border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.2);">
+       style="width:100%; aspect-ratio:16/9; object-fit:cover;
+       border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.2);">
 </div>
 
+<!-- 右侧文字 -->
 <div style="flex:1; min-width:300px;">
 
 <h3 style="margin-top:0;">
@@ -79,26 +82,35 @@ ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models
 </a>
 </h3>
 
-<p align="center">
+<p>
+<b>Haruko386</b>, ...
+</p>
+
+<p>
 <a href="https://haruko386.github.io/research/article.pdf">Paper</a> |
 <a href="https://github.com/cvrs-ys801/ApDepth">Code</a> |
-<a href="https://huggingface.co/spaces/developy/ApDepth">Huggingface Demo 🤗</a>
+<a href="https://huggingface.co/spaces/developy/ApDepth">Demo 🤗</a>
 </p>
 
-<p style="line-height:1.6;">
-Monocular depth estimation (MDE) aims to recover per-pixel depth information from a single 2D image, and it plays a significant rolein many fields such as autonomous driving, 3D
-reconstruction, robotics and so on. Significant progress has been made in MDE recently, and these advancements can be primarily categorized into two major methods: data-driven and model
-driven. Data-driven method such as Depth Anything V2 have achieved promising results. Meanwhile, model-driven methods, mainly based ondiffusion models, have shown great potential, yet
-they still offer vast room for further investigation. Existing diffusion-based methods face two major challenges: multi-step iterative inference incurs prohibitive runtime, while single-step de
-terministic inference often fails to preserve finegrained details.
-To address these limitations, we propose ApDepth, a novel diffusion-based framework for accurate and detailed monocular depth estimation
-with single-step inference. ApDepth ApDepth introduces a novel architecture that simultaneously leverages the knowledge a priori from both data
-driven and model-driven approaches, while maintaining minimal resource overhead, effectively balancing inference efficiency and detail preser
-vation. Extensive experiments demonstrate that ApDepth achieves competitive or superior performance across multiple benchmarks.
-Codes are available at: <a href="https://haruko386.github.io/research/">https://haruko386.github.io/research/</a>.
-</p>
+<ul style="line-height:1.6; margin-top:10px;">
 
+<li>
+We propose <b>ApDepth</b>, a diffusion-based framework for accurate monocular depth estimation with <b>single-step inference</b>.
+</li>
 
+<li>
+The model integrates knowledge from both <b>data-driven methods</b> (e.g., Depth Anything) and <b>model-driven diffusion approaches</b>.
+</li>
+
+<li>
+A novel architecture is designed to balance <b>detail preservation</b> and <b>efficient inference</b> with minimal computational overhead.
+</li>
+
+<li>
+Experiments demonstrate <b>competitive or superior performance</b> across multiple benchmark datasets.
+</li>
+
+</ul>
 
 </div>
 
