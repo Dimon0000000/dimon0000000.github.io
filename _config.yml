@@ -9,9 +9,9 @@
 # Basic Site Settings
 locale                   : "en-US" # e.g. "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "Haruko386"
+title                    : "HomePage"
 title_separator          : "-"
-name                     : &name "Haruko386"
+name                     : &name "CVRS-ys801"
 description              : &description "Your Name's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
 url                      : https://dimon0000000.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
@@ -26,11 +26,11 @@ author:
   avatar           : "image.jpg"
   name             : "Haruko386"
   pronouns         : # example: "she/her"  
-  bio              : "Master in Computer Vision and Machine Learning. Proficient in backend development frameworks such as Go-Zero, Gin, and Django. Frontend development expertise in HTML+CSS+JavaScript and the Vue framework. Familiar with MySQL relational databases. Primary research focus in computer vision is deep estimation methods based on diffusion models. Career Objectives: Computer Vision Algorithm Engineer, Autonomous Driving R&D Engineer, Go/Python Backend Development Engineer"  # A short bio or tagline for the author
-  location         : "Hangzhou, Zhejiang, China"
+  bio              : ""  # A short bio or tagline for the author
+  location         : "Shenyang, Liaoning, China"
   employer         : "Shenyang Jianzhu University"
   uri              : # URL
-  email            : "Haruko386@outlook.com" 
+  email            : "jw34617@gmail.com" 
 
   # Academic websites
   Academia         : "https://haruko386.github.io"
@@ -51,7 +51,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "haruko386"
+  github           : "cvrs-ys801"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
