@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Homepage"
-description              : "Homepage for SJZU ys-801 Computer Vision and Remote Sensing Lab "
+description              : 
 repository               : "dimon0000000/dimon0000000.github.io"
 google_scholar_stats_use_cdn : false # set to true if you want to use cdn for google scholar stats, which is faster but may cause CORS issues
 
