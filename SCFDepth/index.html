@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="description" content="Depth Estimation based on Diffusion Model.">
-  <meta name="keywords" content="ApDepth, Monocular Depth Estimation, Diffusion Models">
+  <meta name="keywords" content="SCFDepth, Monocular Depth Estimation, Diffusion Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</title>
+  <title>SCFDepth: A Single-step Coarse-to-Fine Diffusion Framework for Monocular Depth Estimation</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
@@ -193,7 +193,7 @@
     <div class="container is-max-desktop">
       <div class="hero-body">
         <h2 class="subtitle has-text-centered">
-          <span class="methodname">Apdepth</span> achieved ideal results in object edge refinement
+          <span class="methodname">SCFDepth</span> achieved ideal results in object edge refinement
         </h2>
       </div>
     </div>
@@ -207,7 +207,7 @@
           <h2 class="title is-3">Overview</h2>
           <div class="content has-text-justified">
             <p>
-              We present <b><span class="methodname">Apdepth</span></b>, a diffusion model, and associated fine-tuning
+              We present <b><span class="methodname">SCFDepth</span></b>, a diffusion model, and associated fine-tuning
               protocol for monocular depth estimation.
             </p>
             <p>
@@ -1187,7 +1187,7 @@
               Fine-tuning protocol
             </h3>
 
-            <img id="method_inference" width="100%" src="train.png" alt="Apdepth training scheme">
+            <img id="method_inference" width="100%" src="train.png" alt="SCFDepth training scheme">
 
             <p>
             In the first stage, we learn robust and generalizable representations by aligning U-Net features with high-quality semantic features from DINOv2, emphasizing global context while avoiding overfitting to low-level textures. Building on these semantic priors, the second stage focuses on depth estimation and detail refinement: it first captures global structure and scale through joint optimization, and then enhances fine details and sharp discontinuities via frequency-domain supervision, achieving both structural accuracy and high-fidelity reconstruction.  
@@ -1197,7 +1197,7 @@
               Single-Step Inference
             </h3>
 
-            <img id="method_inference" width="100%" src="infer.png" alt="Apdepth inference scheme">
+            <img id="method_inference" width="100%" src="infer.png" alt="SCFDepth inference scheme">
 
             <p>
               During inference, the input RGB image is first processed by a pretrained depth estimation model to
@@ -1264,9 +1264,9 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{haruko26apdepth,
+      <pre><code>@article{haruko26scfdepth,
   author    = {Haruko386 and Yuan, Shuai},
-  title     = {ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models},
+  title     = {SCFDepth: A Single-step Coarse-to-Fine Diffusion Framework for Monocular Depth Estimation},
   journal   = {Under review},
   year      = {2026},
 }</code></pre>
