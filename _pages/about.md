@@ -51,9 +51,17 @@ The organization hosts research code, experiments, and collaborative projects de
             <b>Tohka</b>
         </a>
     </div>
+    <div style="text-align:center;">
+        <a href="https://github.com/lys863">
+            <img src="https://avatars.githubusercontent.com/u/252846915?v=4" width="120"
+                style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+            <br>
+            <b>lys863</b>
+        </a>
+    </div>
 </div>
 
-<h2 align="center">Publication</h2>
+<!-- <h2 align="center">Publication</h2>
 
 <div style="max-width: 800px; margin: 0 auto; padding: 2em 0; border-bottom: 1px #efefef solid; display: flex; flex-direction: column; align-items: center; gap: 1.8em; font-family: system-ui, -apple-system, sans-serif;">
   <div style="width: 100%; max-width: 680px;">
@@ -90,4 +98,4 @@ The organization hosts research code, experiments, and collaborative projects de
       </ul>
     </div>
   </div>
-</div>
+</div> -->
