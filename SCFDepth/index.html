@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Depth Estimation based on Diffusion Model.">
+  <meta name="keywords" content="ApDepth, Monocular Depth Estimation, Diffusion Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/clock.css">
+  <link rel="icon" href="image/marigold.svg">
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/clock.js"></script>
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation"> -->
+    <!-- <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div> -->
+    
+    <!-- <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div> -->
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">SCFDepth: A Single-step Coarse-to-Fine Diffusion Framework for Monocular Depth Estimation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://haruko386.github.io/">Jiawei Wang<sup>1†</sup></a>
+              </span>
+              <span class="author-block">
+                <a href="https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776">Shuai Yuan<sup>1</sup></a>,
+              </span>
+              <span class="author-block">
+                <a href="">Mingbo Lei<sup>1</sup></a>,
+              </span>
+              <span class="author-block">
+                <a href="">Yibo Chen<sup>2†</sup></a>,
+              </span>
+
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>School of Computer Science and Engineering, Shenyang Jianzhu University</span><br>
+              <span class="author-block"><sup>2</sup>School of Computer Science and Technology, Zhejiang Sci-Tech University</span><br>
+              <span class="author-block" style="font-size: 0.7em; color: #555;">
+                <sup>†</sup> These authors contributed equally to this work.
+              </span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                  <a href="./article.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/Dimon0000000/SCFDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Generative Model. -->
+                <!-- <span class="link-block">
+                  <a href="https://haruko386.github.io/ApDepth-G"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🖌️
+                    </span>
+                    <span>ApDepth-G</span>
+                  </a>
+                </span> -->
+                <!-- Huggingface. -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/developy/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🤗
+                    </span>
+                    <span>Huggingface Model</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/spaces/developy/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🖼️
+                    </span>
+                    <span>Huggingface Demo</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<div align="center">
+  <img id="teaser" width="75%" src="cover.png" alt="cover.">
+</div>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h2 class="subtitle has-text-centered">
+          <span class="methodname">Apdepth</span> achieved ideal results in object edge refinement
+        </h2>
+      </div>
+    </div>
+  </section>
+  <hr>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Overview. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present <b><span class="methodname">Apdepth</span></b>, a diffusion model, and associated fine-tuning
+              protocol for monocular depth estimation.
+            </p>
+            <p>
+              Based on Marigold, its core innovation lies in addressing the deficiency of diffusion models in feature
+              representation capability.
+              Our model followed Marigold, derived from Stable Diffusion and fine-tuned with synthetic data: Hypersim
+              and VKitti, achieved ideal results in object edge refinement.
+            </p>
+            <p>
+              We first fine-tuned the model, resolving the issue of excessive inference time by replacing multi-step
+              reasoning with single-step reasoning.
+              Then, we introduced pre-trained models to assist diffusion models in deep estimation learning. we only
+              used <b><span class="methodname">Depth Anything V2 <b>small</b></span></b> as our
+              "Teacher Model" to aid our model to generate more accurate depth maps, and achieve great result.
+              Finally, we introduced a two-stage training strats, combine <b><span class="methodname">
+                  MSE_Loss</span></b> and our <b><span class="methodname">Latent_Frequence_Loss</span></b> to enhance
+              the model's
+              ability to capture edge information.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Overview. -->
+    </div>
+  </section>
+
+  <section class="section pt-0 pb-4">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Gallery</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small mt-4">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel-horizontal" class="carousel results-carousel">
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/01.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/01_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/01_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/01_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/02.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/02_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/02_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/02_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/03.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/03_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/03_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/03_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/12.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/12_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/12_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/12_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/30.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/30_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/30_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/30_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/42.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/42_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/42_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/42_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/43.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/43_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/43_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/43_pred_colored.png">
+              </div>
+            </div>
+          </div>
+          
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/41.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/41_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/41_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/41_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/57.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/57_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/57_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/57_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/53.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/53_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/53_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/53_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/40.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/40_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/40_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/40_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/20.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/20_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/20_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/20_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/22.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/22_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/22_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/22_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/23.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/23_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/23_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/23_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/39.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/39_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/39_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/39_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/64.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/64_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/64_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/64_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/05.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/05_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/05_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/05_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/14.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/14_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/14_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/14_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/27.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/27_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/27_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/27_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/28.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/28_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/28_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/28_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/29.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/29_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/29_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/29_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/38.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/38_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/38_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/38_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body pt-0">
+      <div class="container">
+        <div id="results-carousel-vertical" class="carousel results-carousel">
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/00.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/00_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/00_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/00_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/04.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/04_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/04_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/04_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/07.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/07_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/07_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/07_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/32.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/32_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/32_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/32_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/15.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/15_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/15_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/15_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/65.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/65_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/65_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/65_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/46.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/46_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/46_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/46_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/47.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/47_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/47_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/47_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/59.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/59_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/59_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/59_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/54.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/54_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/54_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/54_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/55.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/55_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/55_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/55_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/60.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/60_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/60_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/60_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/61.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/61_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/61_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/61_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/31.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/31_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/31_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/31_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/19.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/19_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/19_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/19_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/24.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/24_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/24_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/24_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/26.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/26_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/26_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/26_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/25.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/25_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/25_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/25_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/33.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/33_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/33_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/33_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/34.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/34_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/34_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/34_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/35.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/35_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/35_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/35_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/36.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/36_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/36_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/36_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/08.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/08_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/08_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/08_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/09.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/09_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/09_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/09_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/17.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/17_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/17_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/17_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/18.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/18_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/18_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/18_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-fulled">
+      <!-- Method. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">How it works</h2>
+          <div class="content has-text-justified">
+            <h3 class="title has-text-centered">
+              Fine-tuning protocol
+            </h3>
+
+            <img id="method_inference" width="100%" src="train.png" alt="Apdepth training scheme">
+
+            <p>
+            In the first stage, we learn robust and generalizable representations by aligning U-Net features with high-quality semantic features from DINOv2, emphasizing global context while avoiding overfitting to low-level textures. Building on these semantic priors, the second stage focuses on depth estimation and detail refinement: it first captures global structure and scale through joint optimization, and then enhances fine details and sharp discontinuities via frequency-domain supervision, achieving both structural accuracy and high-fidelity reconstruction.  
+            </p>
+
+            <h3 class="title has-text-centered">
+              Single-Step Inference
+            </h3>
+
+            <img id="method_inference" width="100%" src="infer.png" alt="Apdepth inference scheme">
+
+            <p>
+              During inference, the input RGB image is first processed by a pretrained depth estimation model to
+              generate a coarse predicted depth map.
+              Both the RGB image and the predicted depth map are encoded into the latent space using the frozen VAE
+              encoder to obtain the corresponding latent representations.
+              These two latents are concatenated and fed into the Latent Diffusion U-Net, which performs only a single
+              denoising step to generate the predicted latent representation.
+              Finally, the latent decoder reconstructs the refined depth map from the predicted latent, producing the
+              final output depth.
+            </p>
+
+            <p>
+              We train our model on a single <strong> <span class="methodname">NVIDIA  RTX 6000 Ada Generation GPU , 20000 iters * 32 batchs</span> </strong>
+              for stage one and <strong> <span class="methodname">1000 iters * 32 batchs</span> </strong> for stage two. It takes around <strong> 6 days
+              </strong> to complete the whole training process.
+              We test our model on a single <strong> <span class="methodname"> NVIDIA Geforce RTX 4090 GPU </span> </strong>, result are available below.
+            </p>
+
+
+            <h3 class="title has-text-centered">
+              Compared with other model-driven methods
+            </h3>
+
+            
+
+            <!-- <h3 class="title has-text-centered">
+            Inference scheme
+          </h3>
+
+          <p>
+            Given an input image <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="2" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math></mjx-assistive-mml></mjx-container>, we encode it with the original Stable Diffusion VAE into the latent code <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="3" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D467 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>z</mi><mrow data-mjx-texclass="ORD"><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></msup></math></mjx-assistive-mml></mjx-container>,
+            and concatenate with the depth latent <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="4" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msubsup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D467 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.269em; margin-left: 0px;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-texatom><mjx-spacer style="margin-top: 0.18em;"></mjx-spacer><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msubsup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msubsup><mi>z</mi><mi>t</mi><mrow data-mjx-texclass="ORD"><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></msubsup></math></mjx-assistive-mml></mjx-container> before giving it to the modified fine-tuned U-Net on every denoising iteration.
+            After executing the schedule of <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="5" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D447 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>T</mi></math></mjx-assistive-mml></mjx-container> steps, the resulting depth latent <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="6" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msubsup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D467 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.297em; margin-left: 0px;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-texatom><mjx-spacer style="margin-top: 0.18em;"></mjx-spacer><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msubsup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msubsup><mi>z</mi><mn>0</mn><mrow data-mjx-texclass="ORD"><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></msubsup></math></mjx-assistive-mml></mjx-container> is decoded into
+            an image, whose 3 channels are averaged to get the final estimation <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="7" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-texatom texclass="ORD"><mjx-mover><mjx-over style="padding-bottom: 0.105em; padding-left: 0.427em; margin-bottom: -0.531em;"><mjx-mo class="mjx-n" style="width: 0px; margin-left: -0.25em;"><mjx-c class="mjx-c5E"></mjx-c></mjx-mo></mjx-over><mjx-base><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi></mjx-base></mjx-mover></mjx-texatom></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow data-mjx-texclass="ORD"><mover><mi>d</mi><mo stretchy="false">^</mo></mover></mrow></math></mjx-assistive-mml></mjx-container>.
+          </p>
+
+          -->
+
+            <!-- <h3 class="title has-text-centered">
+            Comparison with other methods
+          </h3>
+
+          <p>
+            Quantitative comparison of <span class="methodname">Marigold</span> with SOTA affine-invariant depth estimators
+            on several zero-shot benchmarks. All metrics are presented in percentage terms; bold numbers are the best,
+            underscored second best. Our method outperforms other methods on both indoor and outdoor scenes in most cases,
+            without ever seeing a real depth sample.
+          </p>
+
+          <img id="comparison" width="100%" src="./images/comparison.png" alt="Comparison with other methods">
+
+          <p class="mt-5">
+            Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p> -->
+          </div>
+        </div>
+      </div>
+      <img id="method_inference" width="100%" src="table.png" alt="Result">
+      <!--/ Method. -->
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{haruko26apdepth,
+  author    = {Haruko386 and Yuan, Shuai},
+  title     = {ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models},
+  journal   = {Under review},
+  year      = {2026},
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer pt-4 pb-0">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8" align="center">
+          <div class="content">
+            <p>
+              Website template based on
+              <a href="https://github.com/nerfies/nerfies.github.io">
+                Nerfies
+              </a>
+              and licensed under
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                CC-BY-SA-4.0
+              </a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(window).on('load', function () {
+      bulmaCarousel.attach('#results-carousel-horizontal', {
+        slidesToScroll: 1,
+        slidesToShow: 3,
+        loop: true,
+        autoplay: true,
+      });
+
+      bulmaCarousel.attach('#results-carousel-vertical', {
+        slidesToScroll: 1,
+        slidesToShow: 5,
+        loop: true,
+        autoplay: true,
+      });
+
+      bulmaCarousel.attach('#results-carousel-testimonials', {
+        slidesToScroll: 1,
+        slidesToShow: 3,
+        loop: true,
+        autoplay: true,
+        breakpoints: [
+          {
+            changePoint: 50 + 260 * 2,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            loop: true,
+            autoplay: true,
+          },
+          {
+            changePoint: 50 + 260 * 3,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            loop: true,
+            autoplay: true,
+          },
+          {
+            changePoint: 50 + 260 * 4,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            loop: true,
+            autoplay: true,
+          }
+        ],
+      });
+
+      $(".twentytwenty-container-top").twentytwenty({
+        before_label: 'Input',
+        after_label: 'Ours',
+        default_offset_pct: 0.75,
+      });
+
+      $(".twentytwenty-container-bottom").twentytwenty({
+        before_label: 'Marigold',
+        after_label: 'Ours',
+        default_offset_pct: 0.5,
+      });
+
+      $('.results-carousel').css({
+        'max-height': '2000px',
+        'visibility': 'visible'
+      });
+    });
+  </script>
+
+</body>
+
+</html>

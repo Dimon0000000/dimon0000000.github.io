@@ -59,21 +59,12 @@ The organization hosts research code, experiments, and collaborative projects de
             <b>Tohka</b>
         </a>
     </div>
-</div>
-
-# 📝 Publications 
-
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ARXIV</div><img src='images/cover/cover1.png' alt="cover1" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
-
-[ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models](https://haruko386.github.io/research/article.pdf)
-
-**Jiawei Wang**, Shuai Yuan, Mingbo Lei
-
-\[[**Website**](https://haruko386.github.io/research/)\] \[[Paper](https://haruko386.github.io/research/article.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] 
-
-- We present Apdepth, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
-- **Single-Step Inference**: We fine-tuned the diffusion model for single-step denoising inference, significantly reducing inference time.
-- **Two-Stage Training Strategy**: We adopted a two-stage training strategy, with the first stage focusing on feature alignment within the model and the second stage emphasizing the model's learning of inference.
-</div>
+    <div style="text-align:center;">
+        <a href="https://github.com/lys863">
+            <img src="https://avatars.githubusercontent.com/u/252846915?v=4" width="120"
+                style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+            <br>
+            <b>lys863</b>
+        </a>
+    </div>
 </div>
